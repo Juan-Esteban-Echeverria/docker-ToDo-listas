@@ -1,0 +1,24 @@
+
+<h1>crear</h1>
+
+<!--FORMULARIO PARA CREAR-->
+    <label for="POST-name">Nombre:</label>
+    <input type="text" name="nombre" id="POST-nombre">
+    <label for="POST-name">Descripcion:</label>
+    <input type="text" name="descripcion" id="POST-descripcion">
+    <button type="submit" value="Save" onclick="crear()">Crear</button>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!--FUNCION AXIOS QUE CONECTA CON LA API CREATE-->
+<script>
+    const entradas = document.querySelectorAll("input")
+
+    const crear = () => {
+        const form = Object.fromEntries([...entradas].map(e => ([e.name,e.value])))
+        console.log(form)
+        axios.post("/todos", form)
+        .then(()=> (window.location.href = "/"))
+    }
+</script>
